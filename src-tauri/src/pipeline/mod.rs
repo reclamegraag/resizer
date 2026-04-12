@@ -10,6 +10,7 @@ use std::path::Path;
 
 pub struct DecodedImage {
     pub image: DynamicImage,
+    #[allow(dead_code)]
     pub orientation: u32,
     pub icc_profile: Option<Vec<u8>>,
     pub exif_bytes: Option<Vec<u8>>,

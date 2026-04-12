@@ -28,6 +28,7 @@ impl Scheduler {
         self.cancel_flag.store(true, Ordering::SeqCst);
     }
 
+    #[allow(dead_code)]
     pub fn is_cancelled(&self) -> bool {
         self.cancel_flag.load(Ordering::SeqCst)
     }

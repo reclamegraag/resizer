@@ -73,6 +73,7 @@ fn inspect_one(path_str: String) -> Result<FileInfo, String> {
 #[serde(rename_all = "camelCase")]
 pub struct EstimateInput {
     pub id: String,
+    #[allow(dead_code)]
     pub path: String,
     pub format: crate::types::Format,
     pub original_size: u64,
