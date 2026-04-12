@@ -1,0 +1,17 @@
+node_modules
+dist
+dist-ssr
+.vite
+*.local
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+
+# Rust
+src-tauri/target
+src-tauri/Cargo.lock
+src-tauri/gen/schemas
+
+# Tauri
+src-tauri/WixTools
