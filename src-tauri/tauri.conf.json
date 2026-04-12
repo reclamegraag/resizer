@@ -13,10 +13,10 @@
     "windows": [
       {
         "title": "Resizer",
-        "width": 980,
-        "height": 720,
+        "width": 1080,
+        "height": 760,
         "minWidth": 720,
-        "minHeight": 560,
+        "minHeight": 620,
         "decorations": true,
         "transparent": false,
         "resizable": true,

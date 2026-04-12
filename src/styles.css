@@ -11,13 +11,61 @@ body {
   font-feature-settings: 'cv11', 'ss01', 'ss03';
 }
 
+.font-display {
+  font-feature-settings: 'ss01';
+  font-variation-settings: 'SOFT' 50, 'WONK' 1, 'opsz' 144;
+  font-style: italic;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum', 'zero';
+}
+
+.label {
+  @apply text-label uppercase text-subtle font-medium;
+}
+
 *:focus-visible {
   @apply outline-none ring-1 ring-fg/40 ring-offset-2 ring-offset-bg;
 }
 
+/* Native range styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  height: 12px;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #262626;
+  border-radius: 2px;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #FAFAFA;
+  margin-top: -5px;
+  transition: box-shadow 180ms;
+}
+input[type='range']:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(132, 204, 22, 0.15);
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
+  }
+}
+
+/* Reduced transparency hides grain */
+@media (prefers-reduced-transparency: reduce) {
+  .grain-overlay {
+    display: none;
   }
 }

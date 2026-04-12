@@ -4,7 +4,13 @@ import { useStore } from '../state/store';
 import { PRESET_LABELS } from '../lib/presets';
 import type { Preset } from '../types';
 
-const ORDER: Preset[] = ['web', 'balanced', 'max', 'custom'];
+const ORDER: Preset[] = ['web', 'balanced', 'max'];
+
+const PRESET_META: Record<Exclude<Preset, 'custom'>, string> = {
+  web: 'q 75 · 1920 · strip',
+  balanced: 'q 82 · strip',
+  max: 'q 92 · lossless · keep',
+};
 
 export function PresetSelector() {
   const preset = useStore((s) => s.preset);
@@ -15,31 +21,39 @@ export function PresetSelector() {
     <div className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-md border border-border bg-surface text-sm hover:bg-border/30"
+        className="group flex items-center gap-3 pl-3 pr-3 h-9 rounded-full border border-border-soft bg-bg-1 hover:border-border transition"
       >
-        <span className="text-muted text-xs">preset</span>
-        <span>{PRESET_LABELS[preset]}</span>
-        <ChevronDown className="w-3.5 h-3.5 text-muted" />
+        <span className="label">preset</span>
+        <span className="font-display italic text-[15px] text-fg">
+          {PRESET_LABELS[preset]}
+        </span>
+        <ChevronDown
+          className={`w-3.5 h-3.5 text-subtle transition-transform duration-200 ${
+            open ? 'rotate-180' : ''
+          }`}
+        />
       </button>
       {open && (
         <>
-          <div
-            className="fixed inset-0 z-10"
-            onClick={() => setOpen(false)}
-          />
-          <div className="absolute right-0 mt-1 w-40 rounded-md border border-border bg-surface shadow-xl z-20 overflow-hidden">
-            {ORDER.filter((p) => p !== 'custom').map((p) => (
+          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 mt-2 w-56 rounded-panel border border-border-soft bg-bg-1 shadow-2xl shadow-inner-hl z-20 overflow-hidden animate-fade-up">
+            {ORDER.map((p) => (
               <button
                 key={p}
                 onClick={() => {
                   setPreset(p);
                   setOpen(false);
                 }}
-                className={`block w-full text-left px-3 py-2 text-sm hover:bg-border/40 ${
-                  preset === p ? 'text-fg' : 'text-muted'
+                className={`w-full text-left px-4 py-3 hover:bg-bg-2 transition flex items-center justify-between ${
+                  preset === p ? 'bg-bg-2/60' : ''
                 }`}
               >
-                {PRESET_LABELS[p]}
+                <span className="font-display italic text-[17px] text-fg">
+                  {PRESET_LABELS[p]}
+                </span>
+                <span className="font-mono text-[10px] text-subtle tracking-wide">
+                  {PRESET_META[p]}
+                </span>
               </button>
             ))}
           </div>

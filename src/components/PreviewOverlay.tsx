@@ -7,8 +7,8 @@ import { formatBytes, savingsPct } from '../lib/format';
 
 export function PreviewOverlay() {
   const selectedId = useStore((s) => s.selectedId);
-  const job = useStore((s) =>
-    s.jobs.find((j) => j.id === s.selectedId) || null,
+  const job = useStore(
+    (s) => s.jobs.find((j) => j.id === s.selectedId) || null,
   );
   const settings = useStore((s) => s.settings);
   const select = useStore((s) => s.select);
@@ -31,9 +31,7 @@ export function PreviewOverlay() {
           setPreviewUrl(r.dataUrl);
           setPreviewSize(r.size);
         })
-        .catch(() => {
-          setPreviewUrl(null);
-        })
+        .catch(() => setPreviewUrl(null))
         .finally(() => setLoading(false));
     }, 250);
     return () => clearTimeout(t);
@@ -45,12 +43,15 @@ export function PreviewOverlay() {
   const pct = previewSize ? savingsPct(job.originalSize, previewSize) : 0;
 
   return (
-    <div className="fixed inset-0 z-40 bg-bg/95 backdrop-blur-sm flex flex-col">
-      <div className="flex items-center justify-between px-4 h-14 border-b border-border">
-        <div className="text-sm truncate">{job.name}</div>
+    <div className="fixed inset-0 z-40 bg-bg/90 backdrop-blur-xl flex flex-col animate-fade-up">
+      <div className="flex items-center justify-between px-6 h-14 border-b border-border-soft">
+        <div className="flex items-baseline gap-3">
+          <span className="font-display italic text-muted text-sm">previewing</span>
+          <span className="text-sm truncate max-w-[60vw]">{job.name}</span>
+        </div>
         <button
           onClick={() => select(null)}
-          className="p-2 text-muted hover:text-fg"
+          className="p-2 text-subtle hover:text-fg transition"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -76,27 +77,40 @@ export function PreviewOverlay() {
           </div>
         )}
         <div
-          className="absolute top-0 bottom-0 w-px bg-fg pointer-events-none"
+          className="absolute top-0 bottom-0 w-px bg-fg/80 pointer-events-none shadow-[0_0_12px_rgba(250,250,250,0.3)]"
           style={{ left: `${slider}%` }}
         />
+        <div
+          className="absolute w-6 h-6 rounded-full border border-fg bg-bg/70 backdrop-blur pointer-events-none"
+          style={{ left: `calc(${slider}% - 12px)`, top: '50%', transform: 'translateY(-50%)' }}
+        />
+        <div className="absolute top-4 left-4 label bg-bg/70 backdrop-blur rounded px-2 py-1">before</div>
+        <div className="absolute top-4 right-4 label bg-bg/70 backdrop-blur rounded px-2 py-1">after</div>
         <input
           type="range"
           min={0}
           max={100}
           value={slider}
           onChange={(e) => setSlider(Number(e.target.value))}
-          className="absolute inset-x-0 bottom-8 mx-auto w-2/3 accent-fg"
+          className="absolute inset-x-0 bottom-8 mx-auto w-2/3"
           aria-label="Before/after slider"
         />
       </div>
 
-      <div className="border-t border-border px-4 h-14 flex items-center justify-between text-xs font-mono">
+      <div className="border-t border-border-soft px-6 h-16 flex items-center justify-between text-xs font-mono tnum">
         <div>
-          <span className="text-muted">original</span>{' '}
+          <span className="label mr-2">original</span>
           <span>{formatBytes(job.originalSize)}</span>
         </div>
-        <div>
-          <span className="text-muted">preview</span>{' '}
+        <div className="text-center">
+          {pct > 0 && (
+            <span className="font-display italic text-accent text-xl tnum">
+              −{pct}%
+            </span>
+          )}
+        </div>
+        <div className="text-right">
+          <span className="label mr-2">preview</span>
           <span>
             {loading
               ? '…'
@@ -104,7 +118,6 @@ export function PreviewOverlay() {
                 ? formatBytes(previewSize)
                 : 'error'}
           </span>
-          {pct > 0 && <span className="text-accent ml-2">−{pct}%</span>}
         </div>
       </div>
     </div>

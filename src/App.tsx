@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { DropZone } from './components/DropZone';
+import { Hero } from './components/Hero';
 import { PresetSelector } from './components/PresetSelector';
-import { FileList } from './components/FileList';
+import { FileGrid } from './components/FileGrid';
 import { Footer } from './components/Footer';
 import { PreviewOverlay } from './components/PreviewOverlay';
 import { AdvancedPanel } from './components/AdvancedPanel';
+import { GrainOverlay } from './components/GrainOverlay';
 import { useStore } from './state/store';
 import { estimateBatch, onBatchDone, onJobProgress } from './lib/tauri';
 
@@ -14,7 +15,6 @@ export default function App() {
   const updateJob = useStore((s) => s.updateJob);
   const setBatchRunning = useStore((s) => s.setBatchRunning);
 
-  // Subscribe to backend events
   useEffect(() => {
     const unA = onJobProgress((e) => {
       switch (e.status) {
@@ -43,9 +43,10 @@ export default function App() {
     };
   }, [updateJob, setBatchRunning]);
 
-  // Re-estimate on settings change
   useEffect(() => {
-    const pending = jobs.filter((j) => j.status === 'queued' || j.status === 'error');
+    const pending = jobs.filter(
+      (j) => j.status === 'queued' || j.status === 'error',
+    );
     if (pending.length === 0) return;
     let cancelled = false;
     const t = setTimeout(async () => {
@@ -74,21 +75,36 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [settings, jobs.length]);
 
+  const hasJobs = jobs.length > 0;
+
   return (
-    <div className="flex flex-col h-screen bg-bg">
-      <header className="flex items-center justify-between px-4 h-14 flex-shrink-0">
-        <div className="font-medium tracking-tight">resizer</div>
+    <div className="flex flex-col h-screen bg-bg relative">
+      <header className="flex items-center justify-between px-5 h-14 flex-shrink-0 border-b border-border-soft/60">
+        <div className="flex items-baseline gap-2">
+          <span className="text-sm font-medium tracking-tight">resizer</span>
+          {hasJobs && (
+            <span className="font-display italic text-muted text-sm tnum">
+              № {String(jobs.length).padStart(2, '0')}
+            </span>
+          )}
+        </div>
         <PresetSelector />
       </header>
 
-      <main className="flex-1 min-h-0 flex flex-col px-4 pb-2 gap-4">
-        <DropZone />
-        <FileList />
+      <main className="flex-1 min-h-0 flex flex-col overflow-hidden">
+        {hasJobs ? (
+          <div className="flex-1 min-h-0 overflow-auto py-4">
+            <FileGrid />
+          </div>
+        ) : (
+          <Hero />
+        )}
       </main>
 
       <AdvancedPanel />
       <Footer />
       <PreviewOverlay />
+      <GrainOverlay />
     </div>
   );
 }

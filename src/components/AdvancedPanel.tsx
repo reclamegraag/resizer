@@ -8,20 +8,21 @@ export function AdvancedPanel() {
   const setSettings = useStore((s) => s.setSettings);
 
   return (
-    <div className="border-t border-border">
+    <div className="border-t border-border-soft">
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between px-4 h-10 text-xs text-muted hover:text-fg"
+        className="w-full flex items-center justify-between px-5 h-11 text-xs text-subtle hover:text-fg transition"
       >
-        <span>advanced</span>
+        <span className="label">advanced</span>
         <ChevronDown
-          className={`w-3.5 h-3.5 transition ${open ? 'rotate-180' : ''}`}
+          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+            open ? 'rotate-180' : ''
+          }`}
         />
       </button>
       {open && (
-        <div className="px-4 pb-4 grid grid-cols-2 gap-4 text-xs">
-          <label className="flex flex-col gap-1">
-            <span className="text-muted">JPEG quality · {settings.jpegQuality}</span>
+        <div className="px-5 pb-5 grid grid-cols-2 gap-x-8 gap-y-4 text-xs animate-fade-up">
+          <Control label={`JPEG quality · ${settings.jpegQuality}`}>
             <input
               type="range"
               min={50}
@@ -30,77 +31,127 @@ export function AdvancedPanel() {
               onChange={(e) =>
                 setSettings({ jpegQuality: Number(e.target.value) })
               }
-              className="accent-fg"
+              className="w-full"
             />
-          </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-muted">
-              PNG quality · {settings.pngQualityMin}-{settings.pngQualityMax}
-            </span>
+          </Control>
+
+          <Control
+            label={`PNG quality · ${settings.pngQualityMin}–${settings.pngQualityMax}`}
+          >
             <input
               type="range"
               min={40}
               max={100}
               value={settings.pngQualityMax}
+              disabled={!settings.pngLossy}
               onChange={(e) => {
                 const v = Number(e.target.value);
                 setSettings({
                   pngQualityMax: v,
-                  pngQualityMin: Math.min(settings.pngQualityMin, v - 5),
+                  pngQualityMin: Math.max(30, Math.min(settings.pngQualityMin, v - 5)),
                 });
               }}
-              className="accent-fg"
-              disabled={!settings.pngLossy}
+              className="w-full disabled:opacity-30"
             />
-          </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-muted">Max width (px)</span>
-            <input
-              type="number"
-              placeholder="none"
-              value={settings.maxWidth ?? ''}
-              onChange={(e) =>
-                setSettings({
-                  maxWidth: e.target.value ? Number(e.target.value) : null,
-                })
-              }
-              className="bg-surface border border-border rounded px-2 py-1 font-mono"
+          </Control>
+
+          <Control label="Max width (px)">
+            <NumInput
+              value={settings.maxWidth}
+              onChange={(v) => setSettings({ maxWidth: v })}
             />
-          </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-muted">Max height (px)</span>
-            <input
-              type="number"
-              placeholder="none"
-              value={settings.maxHeight ?? ''}
-              onChange={(e) =>
-                setSettings({
-                  maxHeight: e.target.value ? Number(e.target.value) : null,
-                })
-              }
-              className="bg-surface border border-border rounded px-2 py-1 font-mono"
+          </Control>
+
+          <Control label="Max height (px)">
+            <NumInput
+              value={settings.maxHeight}
+              onChange={(v) => setSettings({ maxHeight: v })}
             />
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={settings.pngLossy}
-              onChange={(e) => setSettings({ pngLossy: e.target.checked })}
-              className="accent-fg"
-            />
-            <span>PNG lossy (pngquant)</span>
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={settings.stripMetadata}
-              onChange={(e) => setSettings({ stripMetadata: e.target.checked })}
-              className="accent-fg"
-            />
-            <span>Strip metadata (EXIF/ICC)</span>
-          </label>
+          </Control>
+
+          <Check
+            checked={settings.pngLossy}
+            onChange={(v) => setSettings({ pngLossy: v })}
+            label="PNG lossy (pngquant)"
+          />
+          <Check
+            checked={settings.stripMetadata}
+            onChange={(v) => setSettings({ stripMetadata: v })}
+            label="Strip metadata"
+          />
         </div>
       )}
     </div>
+  );
+}
+
+function Control({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="flex flex-col gap-2">
+      <span className="label">{label}</span>
+      {children}
+    </label>
+  );
+}
+
+function NumInput({
+  value,
+  onChange,
+}: {
+  value: number | null;
+  onChange: (v: number | null) => void;
+}) {
+  return (
+    <input
+      type="number"
+      placeholder="none"
+      value={value ?? ''}
+      onChange={(e) => onChange(e.target.value ? Number(e.target.value) : null)}
+      className="bg-bg-1 border border-border-soft rounded-md px-3 h-9 font-mono text-fg placeholder:text-faint focus:border-fg/40 outline-none transition"
+    />
+  );
+}
+
+function Check({
+  checked,
+  onChange,
+  label,
+}: {
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  label: string;
+}) {
+  return (
+    <label className="flex items-center gap-3 cursor-pointer select-none h-9">
+      <span
+        className={`relative w-4 h-4 rounded-sm border transition ${
+          checked ? 'bg-fg border-fg' : 'bg-bg-1 border-border'
+        }`}
+      >
+        {checked && (
+          <svg
+            viewBox="0 0 16 16"
+            className="absolute inset-0 w-full h-full text-bg"
+            aria-hidden
+          >
+            <path
+              d="M3 8l3.5 3.5L13 5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        )}
+      </span>
+      <input
+        type="checkbox"
+        className="sr-only"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+      />
+      <span className="text-muted">{label}</span>
+    </label>
   );
 }
