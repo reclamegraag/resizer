@@ -72,15 +72,15 @@ export function FileCard({ job, index, onClick }: Props) {
         <div className="text-[13px] truncate text-fg" title={job.name}>
           {job.name}
         </div>
-        <div className="flex items-baseline justify-between text-[11px] font-mono text-subtle tnum">
-          <span>
+        <div className="space-y-1 text-[11px] font-mono text-subtle tnum">
+          <div>
             {job.width}×{job.height}
-          </span>
-          <span>
+          </div>
+          <div className="truncate">
             <span className="text-muted">{before}</span>
             <span className="text-faint mx-1">→</span>
             <span className="text-fg">{after}</span>
-          </span>
+          </div>
         </div>
         {pct !== null && pct > 0 && (
           <div className="font-display italic text-accent text-lg tnum leading-none">
