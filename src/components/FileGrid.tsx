@@ -5,7 +5,7 @@ import { FileCard } from './FileCard';
 import { useContainerWidth, colsForWidth } from '../lib/useContainerCols';
 
 const GAP = 12;
-const ROW_HEIGHT = 290;
+const ROW_HEIGHT = 348;
 const PADDING = 16;
 
 export function FileGrid() {

@@ -79,7 +79,10 @@ export default function App() {
   const hasJobs = jobs.length > 0;
 
   return (
-    <div className="flex flex-col h-screen bg-bg relative overflow-hidden border border-border-soft/20">
+    <div
+      className="flex flex-col h-screen bg-bg relative overflow-hidden border border-border-soft/20"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <WindowResizeGrips />
       <Titlebar hasJobs={hasJobs} jobsCount={jobs.length} />
 
