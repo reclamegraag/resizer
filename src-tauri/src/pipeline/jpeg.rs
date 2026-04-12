@@ -24,16 +24,14 @@ pub fn encode(
             .map_err(|e| e.to_string())?;
 
         if let Some(profile) = icc {
-            started.write_icc_profile(profile).map_err(|e| e.to_string())?;
+            started.write_icc_profile(profile);
         }
         if let Some(ex) = exif {
             // EXIF marker = APP1 (0xE1) with "Exif\0\0" prefix
             let mut payload = Vec::with_capacity(6 + ex.len());
             payload.extend_from_slice(b"Exif\0\0");
             payload.extend_from_slice(ex);
-            started
-                .write_marker(mozjpeg::Marker::APP(1), &payload)
-                .map_err(|e| e.to_string())?;
+            started.write_marker(mozjpeg::Marker::APP(1), &payload);
         }
 
         started.write_scanlines(&rgb).map_err(|e| e.to_string())?;
