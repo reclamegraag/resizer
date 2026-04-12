@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { Hero } from './components/Hero';
-import { PresetSelector } from './components/PresetSelector';
+import { Titlebar } from './components/Titlebar';
 import { FileGrid } from './components/FileGrid';
 import { Footer } from './components/Footer';
 import { PreviewOverlay } from './components/PreviewOverlay';
 import { AdvancedPanel } from './components/AdvancedPanel';
 import { GrainOverlay } from './components/GrainOverlay';
+import { WindowResizeGrips } from './components/WindowResizeGrips';
 import { useStore } from './state/store';
 import { estimateBatch, onBatchDone, onJobProgress } from './lib/tauri';
 
@@ -78,18 +79,9 @@ export default function App() {
   const hasJobs = jobs.length > 0;
 
   return (
-    <div className="flex flex-col h-screen bg-bg relative">
-      <header className="flex items-center justify-between px-5 h-14 flex-shrink-0 border-b border-border-soft/60">
-        <div className="flex items-baseline gap-2">
-          <span className="text-sm font-medium tracking-tight">resizer</span>
-          {hasJobs && (
-            <span className="font-display italic text-muted text-sm tnum">
-              № {String(jobs.length).padStart(2, '0')}
-            </span>
-          )}
-        </div>
-        <PresetSelector />
-      </header>
+    <div className="flex flex-col h-screen bg-bg relative overflow-hidden border border-border-soft/20">
+      <WindowResizeGrips />
+      <Titlebar hasJobs={hasJobs} jobsCount={jobs.length} />
 
       <main className="flex-1 min-h-0 flex flex-col overflow-hidden">
         {hasJobs ? (

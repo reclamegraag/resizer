@@ -6,9 +6,42 @@ html, body, #root {
   height: 100%;
 }
 
+html {
+  color-scheme: dark;
+}
+
 body {
-  @apply bg-bg text-fg font-sans antialiased;
+  @apply bg-transparent text-fg font-sans antialiased;
   font-feature-settings: 'cv11', 'ss01', 'ss03';
+}
+
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+body::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  background: #3a3a3a;
+  border: 3px solid #0f0f0f;
+  border-radius: 999px;
+}
+
+body::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:hover {
+  background: #4b4b4b;
+}
+
+body,
+* {
+  scrollbar-color: #3a3a3a #0f0f0f;
+  scrollbar-width: thin;
 }
 
 .font-display {
@@ -39,7 +72,7 @@ input[type='range'] {
 }
 input[type='range']::-webkit-slider-runnable-track {
   height: 2px;
-  background: #262626;
+  background: #404040;
   border-radius: 2px;
 }
 input[type='range']::-webkit-slider-thumb {
