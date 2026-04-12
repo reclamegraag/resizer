@@ -207,18 +207,20 @@ pub async fn preview_single(
 ) -> Result<PreviewResult, String> {
     tauri::async_runtime::spawn_blocking(move || {
         let p = PathBuf::from(&path);
+        let original_bytes = std::fs::read(&p).map_err(|e| e.to_string())?;
         let bytes = pipeline::compress_to_memory(&p, &settings).map_err(|e| e.to_string())?;
         let size = bytes.len() as u64;
-        let mime = match pipeline::detect_format(&p) {
-            Some(crate::types::Format::Jpeg) => "image/jpeg",
-            Some(crate::types::Format::Png) => "image/png",
-            None => "application/octet-stream",
-        };
+        let mime = preview_mime(&p);
+        let original_data_url = format!(
+            "data:{mime};base64,{}",
+            base64::engine::general_purpose::STANDARD.encode(&original_bytes)
+        );
         let data_url = format!(
             "data:{mime};base64,{}",
             base64::engine::general_purpose::STANDARD.encode(&bytes)
         );
         Ok(PreviewResult {
+            original_data_url,
             data_url,
             size,
         })
@@ -230,6 +232,15 @@ pub async fn preview_single(
 #[derive(serde::Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PreviewResult {
+    pub original_data_url: String,
     pub data_url: String,
     pub size: u64,
+}
+
+fn preview_mime(path: &PathBuf) -> &'static str {
+    match pipeline::detect_format(path) {
+        Some(crate::types::Format::Jpeg) => "image/jpeg",
+        Some(crate::types::Format::Png) => "image/png",
+        None => "application/octet-stream",
+    }
 }

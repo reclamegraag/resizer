@@ -32,7 +32,7 @@ export async function cancelBatch(): Promise<void> {
 export async function previewSingle(
   path: string,
   settings: Settings,
-): Promise<{ dataUrl: string; size: number }> {
+): Promise<{ originalDataUrl: string; dataUrl: string; size: number }> {
   return invoke('preview_single', { path, settings });
 }
 

@@ -4,7 +4,7 @@ import { useStore } from '../state/store';
 import { PRESET_LABELS } from '../lib/presets';
 import type { Preset } from '../types';
 
-const ORDER: Preset[] = ['web', 'balanced', 'max'];
+const ORDER: Array<Exclude<Preset, 'custom'>> = ['web', 'balanced', 'max'];
 
 const PRESET_META: Record<Exclude<Preset, 'custom'>, string> = {
   web: 'q 75 · 1920 · strip',
