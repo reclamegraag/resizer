@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<title>Resizer — Icon Concepts</title>
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --bg-1: #121212;
+    --fg: #FAFAFA;
+    --muted: #A3A3A3;
+    --subtle: #737373;
+    --accent: #84CC16;
+    --border: #1F1F1F;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--fg); margin: 0; font-family: Inter, system-ui, sans-serif; }
+  header { padding: 64px 64px 24px; }
+  h1 { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400; font-size: 56px; letter-spacing: -0.02em; margin: 0 0 8px; }
+  header p { color: var(--muted); margin: 0; max-width: 640px; line-height: 1.5; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 32px; padding: 32px 64px 96px; }
+  .card { background: var(--bg-1); border: 1px solid var(--border); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+  .icon-row { display: flex; gap: 18px; align-items: center; }
+  .icon-lg { width: 128px; height: 128px; flex-shrink: 0; border-radius: 24px; background: #000; }
+  .icon-md { width: 56px; height: 56px; border-radius: 12px; background: #000; }
+  .icon-sm { width: 28px; height: 28px; border-radius: 6px; background: #000; }
+  .meta { display: flex; flex-direction: column; gap: 6px; }
+  .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--subtle); letter-spacing: 0.08em; }
+  .name { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 22px; }
+  .desc { color: var(--muted); font-size: 13px; line-height: 1.55; }
+  .light { background: #FAFAFA !important; }
+  .row-meta { display: flex; gap: 12px; align-items: center; color: var(--subtle); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+<header>
+  <h1>resizer — icon concepts</h1>
+  <p>10 richtingen, monochroom-eerst, schaalbaar van 16px tot 1024px. Elk concept toont één rationeel idee — geen decoratie zonder doel.</p>
+</header>
+
+<div class="grid">
+
+<!-- 01: Pixel collapse -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="#FAFAFA">
+        <rect x="20" y="20" width="40" height="40"/>
+        <rect x="68" y="28" width="24" height="24" opacity="0.85"/>
+        <rect x="98" y="38" width="12" height="12" opacity="0.65"/>
+        <rect x="20" y="68" width="20" height="20" opacity="0.85"/>
+        <rect x="48" y="74" width="12" height="12" opacity="0.65"/>
+        <rect x="68" y="78" width="6" height="6" opacity="0.45"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="20" y="20" width="40" height="40"/><rect x="68" y="28" width="24" height="24" opacity="0.85"/><rect x="98" y="38" width="12" height="12" opacity="0.65"/><rect x="20" y="68" width="20" height="20" opacity="0.85"/><rect x="48" y="74" width="12" height="12" opacity="0.65"/><rect x="68" y="78" width="6" height="6" opacity="0.45"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="20" y="20" width="40" height="40"/><rect x="68" y="28" width="24" height="24" opacity="0.85"/><rect x="98" y="38" width="12" height="12" opacity="0.65"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 01</span>
+    <span class="name">Pixel Cascade</span>
+    <span class="desc">Eén vierkant breekt in steeds kleinere fragmenten — het verhaal van compressie zonder verlies. Werkt ook prima als losse glyph.</span>
+  </div>
+</div>
+
+<!-- 02: Iris pinch -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="none" stroke="#FAFAFA" stroke-width="6">
+        <rect x="22" y="22" width="84" height="84" rx="6"/>
+      </g>
+      <g fill="#FAFAFA">
+        <rect x="44" y="44" width="40" height="40" transform="rotate(45 64 64)"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA" stroke-width="6"><rect x="22" y="22" width="84" height="84" rx="6"/></g><g fill="#FAFAFA"><rect x="44" y="44" width="40" height="40" transform="rotate(45 64 64)"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA" stroke-width="8"><rect x="22" y="22" width="84" height="84" rx="6"/></g><g fill="#FAFAFA"><rect x="44" y="44" width="40" height="40" transform="rotate(45 64 64)"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 02</span>
+    <span class="name">Iris</span>
+    <span class="desc">Frame met een ingeklapte ruit erin — beeld dat zichzelf comprimeert in zijn eigen contour. Sterk silhouet op alle groottes.</span>
+  </div>
+</div>
+
+<!-- 03: Crop marks R -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g stroke="#FAFAFA" stroke-width="5" fill="none" stroke-linecap="square">
+        <path d="M22 22 L22 44 M22 22 L44 22"/>
+        <path d="M106 22 L106 44 M106 22 L84 22"/>
+        <path d="M22 106 L22 84 M22 106 L44 106"/>
+        <path d="M106 106 L106 84 M106 106 L84 106"/>
+      </g>
+      <text x="64" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="64" font-weight="400" fill="#FAFAFA">R</text>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g stroke="#FAFAFA" stroke-width="6" fill="none"><path d="M22 22 L22 44 M22 22 L44 22"/><path d="M106 22 L106 44 M106 22 L84 22"/><path d="M22 106 L22 84 M22 106 L44 106"/><path d="M106 106 L106 84 M106 106 L84 106"/></g><text x="64" y="86" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="64" fill="#FAFAFA">R</text></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><text x="64" y="92" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="84" fill="#FAFAFA">R</text></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 03</span>
+    <span class="name">Crop & Serif</span>
+    <span class="desc">Hoekmarkeringen plus de Fraunces italic R uit je app. Brand-koppeling met de UI is direct. Op 16px valt het frame weg, R blijft.</span>
+  </div>
+</div>
+
+<!-- 04: Folded square -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <path d="M28 28 H100 V100 H28 Z" fill="#FAFAFA"/>
+      <path d="M100 28 L72 56 L100 56 Z" fill="#0A0A0A"/>
+      <path d="M100 28 L72 56" stroke="#0A0A0A" stroke-width="2"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M28 28 H100 V100 H28 Z" fill="#FAFAFA"/><path d="M100 28 L72 56 L100 56 Z" fill="#0A0A0A"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M22 22 H106 V106 H22 Z" fill="#FAFAFA"/><path d="M106 22 L70 58 L106 58 Z" fill="#0A0A0A"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 04</span>
+    <span class="name">Dog-ear</span>
+    <span class="desc">Een gevouwen hoek — universeel symbool voor "minder, opzij gelegd". Filebureaucratie, maar dan elegant en stil.</span>
+  </div>
+</div>
+
+<!-- 05: Aperture brackets -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g stroke="#FAFAFA" stroke-width="7" fill="none" stroke-linecap="square">
+        <path d="M22 50 V22 H50"/>
+        <path d="M78 22 H106 V50"/>
+        <path d="M106 78 V106 H78"/>
+        <path d="M50 106 H22 V78"/>
+      </g>
+      <circle cx="64" cy="64" r="10" fill="#84CC16"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g stroke="#FAFAFA" stroke-width="9" fill="none"><path d="M22 50 V22 H50"/><path d="M78 22 H106 V50"/><path d="M106 78 V106 H78"/><path d="M50 106 H22 V78"/></g><circle cx="64" cy="64" r="12" fill="#84CC16"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g stroke="#FAFAFA" stroke-width="14" fill="none"><path d="M22 50 V22 H50"/><path d="M78 22 H106 V50"/><path d="M106 78 V106 H78"/><path d="M50 106 H22 V78"/></g><circle cx="64" cy="64" r="14" fill="#84CC16"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 05</span>
+    <span class="name">Aperture</span>
+    <span class="desc">Vier hoekbrackets met een lime-stip in het centrum — accentkleur sluit aan op je CTA. Voelt als een viewfinder.</span>
+  </div>
+</div>
+
+<!-- 06: Concentric -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="none" stroke="#FAFAFA">
+        <rect x="20" y="20" width="88" height="88" rx="2" stroke-width="3" opacity="0.35"/>
+        <rect x="32" y="32" width="64" height="64" rx="2" stroke-width="3" opacity="0.55"/>
+        <rect x="44" y="44" width="40" height="40" rx="2" stroke-width="3" opacity="0.8"/>
+        <rect x="54" y="54" width="20" height="20" rx="1" stroke-width="3"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA"><rect x="20" y="20" width="88" height="88" stroke-width="4" opacity="0.35"/><rect x="32" y="32" width="64" height="64" stroke-width="4" opacity="0.55"/><rect x="44" y="44" width="40" height="40" stroke-width="4" opacity="0.8"/><rect x="54" y="54" width="20" height="20" stroke-width="4"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA"><rect x="20" y="20" width="88" height="88" stroke-width="6" opacity="0.5"/><rect x="44" y="44" width="40" height="40" stroke-width="6"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 06</span>
+    <span class="name">Concentric</span>
+    <span class="desc">Vier vierkanten die naar binnen krimpen, opbouwende dichtheid. Tactiel idee van resizen — bestand wordt steeds dichter.</span>
+  </div>
+</div>
+
+<!-- 07: Negative R cutout -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#FAFAFA"/>
+      <text x="64" y="92" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="92" font-weight="400" fill="#0A0A0A">r</text>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#FAFAFA"/><text x="64" y="92" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="92" fill="#0A0A0A">r</text></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#FAFAFA"/><text x="64" y="92" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="92" fill="#0A0A0A">r</text></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 07</span>
+    <span class="name">Wonk r</span>
+    <span class="desc">Witte tegel met de Fraunces "wonk" lowercase r. Anti-corporate, herkenbaar, leest perfect op de taakbalk.</span>
+  </div>
+</div>
+
+<!-- 08: Singularity gradient -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <defs>
+        <radialGradient id="sing" cx="62%" cy="60%" r="60%">
+          <stop offset="0%" stop-color="#FAFAFA"/>
+          <stop offset="40%" stop-color="#A3A3A3"/>
+          <stop offset="100%" stop-color="#0A0A0A"/>
+        </radialGradient>
+      </defs>
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="16" y="16" width="96" height="96" rx="6" fill="url(#sing)"/>
+      <circle cx="80" cy="76" r="3" fill="#0A0A0A"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="16" y="16" width="96" height="96" rx="6" fill="url(#sing)"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="16" y="16" width="96" height="96" rx="6" fill="url(#sing)"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 08</span>
+    <span class="name">Singularity</span>
+    <span class="desc">Eén vierkant met een radial gradient die naar één punt zuigt — beeld dat naar zijn essentie wordt teruggebracht. Enige raster-touch.</span>
+  </div>
+</div>
+
+<!-- 09: Two squares offset -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="22" y="22" width="60" height="60" fill="none" stroke="#FAFAFA" stroke-width="4" opacity="0.55"/>
+      <rect x="58" y="58" width="48" height="48" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="22" y="22" width="60" height="60" fill="none" stroke="#FAFAFA" stroke-width="6" opacity="0.55"/><rect x="58" y="58" width="48" height="48" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="22" y="22" width="60" height="60" fill="none" stroke="#FAFAFA" stroke-width="10" opacity="0.6"/><rect x="58" y="58" width="48" height="48" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 09</span>
+    <span class="name">Before / After</span>
+    <span class="desc">Twee vierkanten, één outline en één gevuld kleiner. Letterlijke representatie van het kernverschil dat de app produceert.</span>
+  </div>
+</div>
+
+<!-- 10: Glyph slash placeholder -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#84CC16"/>
+      <rect x="22" y="22" width="84" height="84" fill="#0A0A0A"/>
+      <path d="M22 106 L106 22" stroke="#84CC16" stroke-width="10"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#84CC16"/><rect x="22" y="22" width="84" height="84" fill="#0A0A0A"/><path d="M22 106 L106 22" stroke="#84CC16" stroke-width="14"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#84CC16"/><rect x="22" y="22" width="84" height="84" fill="#0A0A0A"/><path d="M22 106 L106 22" stroke="#84CC16" stroke-width="22"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 10</span>
+    <span class="name">Slash</span>
+    <span class="desc">Lime kader, zwart canvas, één diagonale snede die het beeld doormidden trekt. Brutaal, herkenbaar in een hele dock.</span>
+  </div>
+</div>
+
+<!-- 11: Halftone shrink -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="#FAFAFA">
+        <circle cx="32" cy="32" r="10"/>
+        <circle cx="64" cy="32" r="8"/>
+        <circle cx="96" cy="32" r="6"/>
+        <circle cx="32" cy="64" r="8"/>
+        <circle cx="64" cy="64" r="6"/>
+        <circle cx="96" cy="64" r="4"/>
+        <circle cx="32" cy="96" r="6"/>
+        <circle cx="64" cy="96" r="4"/>
+        <circle cx="96" cy="96" r="2"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><circle cx="32" cy="32" r="10"/><circle cx="64" cy="32" r="8"/><circle cx="96" cy="32" r="6"/><circle cx="32" cy="64" r="8"/><circle cx="64" cy="64" r="6"/><circle cx="96" cy="64" r="4"/><circle cx="32" cy="96" r="6"/><circle cx="64" cy="96" r="4"/><circle cx="96" cy="96" r="2"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><circle cx="32" cy="32" r="14"/><circle cx="96" cy="32" r="8"/><circle cx="32" cy="96" r="8"/><circle cx="96" cy="96" r="3"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 11</span>
+    <span class="name">Halftone</span>
+    <span class="desc">Stippen die diagonaal kleiner worden — print-erfgoed van compressie. Voelt analoog, niet techy.</span>
+  </div>
+</div>
+
+<!-- 12: Brackets [r] -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="#FAFAFA">
+        <path d="M28 28 H44 V36 H36 V92 H44 V100 H28 Z"/>
+        <path d="M100 28 H84 V36 H92 V92 H84 V100 H100 Z"/>
+      </g>
+      <text x="64" y="84" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="52" fill="#FAFAFA">r</text>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><path d="M28 28 H44 V36 H36 V92 H44 V100 H28 Z"/><path d="M100 28 H84 V36 H92 V92 H84 V100 H100 Z"/></g><text x="64" y="84" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="52" fill="#FAFAFA">r</text></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><text x="64" y="92" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="84" fill="#FAFAFA">[r]</text></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 12</span>
+    <span class="name">Bracketed</span>
+    <span class="desc">Typografisch: [r]. Code-cultuur knipoog, monogram zonder pretentie. Zit dichtbij je terminal-aesthetiek.</span>
+  </div>
+</div>
+
+<!-- 13: Compression bars -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="#FAFAFA">
+        <rect x="22" y="32" width="14" height="64"/>
+        <rect x="44" y="44" width="14" height="40"/>
+        <rect x="66" y="52" width="14" height="24"/>
+        <rect x="88" y="58" width="14" height="12"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="22" y="32" width="14" height="64"/><rect x="44" y="44" width="14" height="40"/><rect x="66" y="52" width="14" height="24"/><rect x="88" y="58" width="14" height="12"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="22" y="32" width="20" height="64"/><rect x="56" y="48" width="20" height="32"/><rect x="90" y="58" width="20" height="12"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 13</span>
+    <span class="name">Decay Bars</span>
+    <span class="desc">Vier balken die afnemen — bestandsgrootte die letterlijk terugloopt. Datavisualisatie-gevoel, kraakhelder.</span>
+  </div>
+</div>
+
+<!-- 14: Möbius -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="none" stroke="#FAFAFA" stroke-width="6" stroke-linecap="round">
+        <path d="M40 50 Q40 30 64 30 Q88 30 88 50 Q88 70 64 70 Q40 70 40 90 Q40 110 64 110 Q88 110 88 90"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA" stroke-width="8" stroke-linecap="round"><path d="M40 50 Q40 30 64 30 Q88 30 88 50 Q88 70 64 70 Q40 70 40 90 Q40 110 64 110 Q88 110 88 90"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA" stroke-width="14" stroke-linecap="round"><path d="M40 50 Q40 30 64 30 Q88 30 88 50 Q88 70 64 70 Q40 70 40 90 Q40 110 64 110 Q88 110 88 90"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 14</span>
+    <span class="name">Loop</span>
+    <span class="desc">Een doorlopende S-curve — lossless cyclus, batch zonder verlies. Geen vierkant; breekt het stramien van de set.</span>
+  </div>
+</div>
+
+<!-- 15: Stack -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g>
+        <rect x="32" y="38" width="56" height="56" fill="#525252"/>
+        <rect x="40" y="46" width="56" height="56" fill="#A3A3A3"/>
+        <rect x="48" y="54" width="56" height="56" fill="#FAFAFA"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="32" y="38" width="56" height="56" fill="#525252"/><rect x="40" y="46" width="56" height="56" fill="#A3A3A3"/><rect x="48" y="54" width="56" height="56" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="36" width="64" height="64" fill="#737373"/><rect x="40" y="52" width="64" height="64" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 15</span>
+    <span class="name">Stack</span>
+    <span class="desc">Drie gelaagde tegels, opklimmend in helderheid — verwijst direct naar batch. Diepte zonder skeuomorfisme.</span>
+  </div>
+</div>
+
+<!-- 16: Quality arc -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="none" stroke-width="8" stroke-linecap="round">
+        <path d="M28 90 A40 40 0 0 1 100 90" stroke="#262626"/>
+        <path d="M28 90 A40 40 0 0 1 92 64" stroke="#84CC16"/>
+      </g>
+      <circle cx="64" cy="92" r="3" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke-width="10" stroke-linecap="round"><path d="M28 90 A40 40 0 0 1 100 90" stroke="#262626"/><path d="M28 90 A40 40 0 0 1 92 64" stroke="#84CC16"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke-width="16" stroke-linecap="round"><path d="M28 90 A40 40 0 0 1 100 90" stroke="#262626"/><path d="M28 90 A40 40 0 0 1 92 64" stroke="#84CC16"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 16</span>
+    <span class="name">Quality Arc</span>
+    <span class="desc">Halfboog-meter, lime arc op grijze rail. Quality-first als visueel kompas. Ongebruikelijk voor app-icons → opvallend.</span>
+  </div>
+</div>
+
+<!-- 17: Diagonal split -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="20" y="20" width="88" height="88" rx="4" fill="#FAFAFA"/>
+      <path d="M20 108 L108 20 L108 108 Z" fill="#0A0A0A"/>
+      <g fill="#FAFAFA" opacity="0.6">
+        <rect x="78" y="46" width="6" height="6"/>
+        <rect x="88" y="56" width="6" height="6"/>
+        <rect x="68" y="56" width="6" height="6"/>
+        <rect x="78" y="66" width="6" height="6"/>
+        <rect x="88" y="76" width="6" height="6"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="20" y="20" width="88" height="88" rx="4" fill="#FAFAFA"/><path d="M20 108 L108 20 L108 108 Z" fill="#0A0A0A"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="20" y="20" width="88" height="88" fill="#FAFAFA"/><path d="M20 108 L108 20 L108 108 Z" fill="#0A0A0A"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 17</span>
+    <span class="name">Diagonal</span>
+    <span class="desc">Wit vlak diagonaal gehalveerd, met restpixels in de zwarte helft. Voor/na in één glyph — leest als de PreviewOverlay.</span>
+  </div>
+</div>
+
+<!-- 18: Tessellation -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="#FAFAFA">
+        <rect x="20" y="20" width="42" height="42"/>
+        <rect x="66" y="20" width="20" height="20"/>
+        <rect x="90" y="20" width="20" height="20" opacity="0.7"/>
+        <rect x="66" y="44" width="20" height="20" opacity="0.7"/>
+        <rect x="90" y="44" width="20" height="20"/>
+        <rect x="20" y="66" width="20" height="20" opacity="0.7"/>
+        <rect x="44" y="66" width="20" height="20"/>
+        <rect x="20" y="90" width="20" height="20"/>
+        <rect x="44" y="90" width="20" height="20" opacity="0.7"/>
+        <rect x="68" y="68" width="42" height="42" opacity="0.85"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="20" y="20" width="42" height="42"/><rect x="66" y="20" width="44" height="44" opacity="0.7"/><rect x="20" y="66" width="44" height="44" opacity="0.7"/><rect x="68" y="68" width="42" height="42"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="20" y="20" width="42" height="42"/><rect x="68" y="68" width="42" height="42"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 18</span>
+    <span class="name">Tessellation</span>
+    <span class="desc">Vier kwadranten, twee massief en twee opgedeeld in subblokjes — ratio van resolutie. Fris en architectonisch.</span>
+  </div>
+</div>
+
+<!-- 19: Knot -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="none" stroke="#FAFAFA" stroke-width="6">
+        <rect x="28" y="28" width="50" height="50"/>
+        <rect x="50" y="50" width="50" height="50"/>
+      </g>
+      <rect x="50" y="50" width="28" height="28" fill="#0A0A0A"/>
+      <rect x="50" y="50" width="28" height="28" fill="none" stroke="#FAFAFA" stroke-width="6"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA" stroke-width="8"><rect x="28" y="28" width="50" height="50"/><rect x="50" y="50" width="50" height="50"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="none" stroke="#FAFAFA" stroke-width="12"><rect x="22" y="22" width="56" height="56"/><rect x="50" y="50" width="56" height="56"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 19</span>
+    <span class="name">Interlock</span>
+    <span class="desc">Twee outline-vierkanten verstrengeld, met lege kruising — lossless: niets gaat verloren in de overlap.</span>
+  </div>
+</div>
+
+<!-- 20: Single dot -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g stroke="#262626" stroke-width="1">
+        <line x1="32" y1="20" x2="32" y2="108"/>
+        <line x1="64" y1="20" x2="64" y2="108"/>
+        <line x1="96" y1="20" x2="96" y2="108"/>
+        <line x1="20" y1="32" x2="108" y2="32"/>
+        <line x1="20" y1="64" x2="108" y2="64"/>
+        <line x1="20" y1="96" x2="108" y2="96"/>
+      </g>
+      <circle cx="64" cy="64" r="8" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g stroke="#262626" stroke-width="2"><line x1="64" y1="20" x2="64" y2="108"/><line x1="20" y1="64" x2="108" y2="64"/></g><circle cx="64" cy="64" r="12" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><circle cx="64" cy="64" r="22" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 20</span>
+    <span class="name">Essence</span>
+    <span class="desc">Eén stip op een fading raster — extreme reductie. Schreeuwt confidence; alleen verdedigbaar als de rest van de brand even rustig is.</span>
+  </div>
+</div>
+
+<!-- 21: Corner Pins -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="#FAFAFA">
+        <circle cx="32" cy="32" r="6"/>
+        <circle cx="96" cy="32" r="6"/>
+        <circle cx="32" cy="96" r="6"/>
+        <circle cx="96" cy="96" r="6"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><circle cx="32" cy="32" r="8"/><circle cx="96" cy="32" r="8"/><circle cx="32" cy="96" r="8"/><circle cx="96" cy="96" r="8"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><circle cx="32" cy="32" r="12"/><circle cx="96" cy="96" r="12"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 21</span>
+    <span class="name">Corner Pins</span>
+    <span class="desc">Vier ankerpunten. Definieert de uiterste grenzen van het frame zonder het in te vullen.</span>
+  </div>
+</div>
+
+<!-- 22: Descent -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="32" y="32" width="24" height="24" fill="#FAFAFA"/>
+      <rect x="56" y="56" width="16" height="16" fill="#A3A3A3"/>
+      <rect x="72" y="72" width="8" height="8" fill="#525252"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="32" y="32" width="24" height="24" fill="#FAFAFA"/><rect x="56" y="56" width="16" height="16" fill="#A3A3A3"/><rect x="72" y="72" width="8" height="8" fill="#525252"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="24" width="40" height="40" fill="#FAFAFA"/><rect x="64" y="64" width="24" height="24" fill="#A3A3A3"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 22</span>
+    <span class="name">Descent</span>
+    <span class="desc">Dalende trap van blokken. Visuele afname van bestandsgrootte.</span>
+  </div>
+</div>
+
+<!-- 23: Alignment -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <path d="M24 64 H104" stroke="#FAFAFA" stroke-width="4"/>
+      <rect x="54" y="44" width="20" height="40" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M24 64 H104" stroke="#FAFAFA" stroke-width="6"/><rect x="52" y="44" width="24" height="40" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M20 64 H108" stroke="#FAFAFA" stroke-width="8"/><rect x="44" y="34" width="40" height="60" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 23</span>
+    <span class="name">Alignment</span>
+    <span class="desc">Centrale as die een blok doorsnijdt. Balans in het hart van de app.</span>
+  </div>
+</div>
+
+<!-- 24: Core Extraction -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="24" y="24" width="80" height="80" fill="none" stroke="#FAFAFA" stroke-width="6"/>
+      <rect x="48" y="48" width="32" height="32" fill="#84CC16"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="24" width="80" height="80" fill="none" stroke="#FAFAFA" stroke-width="8"/><rect x="48" y="48" width="32" height="32" fill="#84CC16"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="20" y="20" width="88" height="88" fill="none" stroke="#FAFAFA" stroke-width="12"/><rect x="44" y="44" width="40" height="40" fill="#84CC16"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 24</span>
+    <span class="name">Core</span>
+    <span class="desc">Wegsnijden van ruis om de groene kern te onthullen. Focus op essentie.</span>
+  </div>
+</div>
+
+<!-- 25: Phase Shift -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="30" y="30" width="40" height="40" fill="#FAFAFA" opacity="0.4"/>
+      <rect x="58" y="58" width="40" height="40" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="30" y="30" width="40" height="40" fill="#FAFAFA" opacity="0.4"/><rect x="58" y="58" width="40" height="40" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="24" width="44" height="44" fill="#FAFAFA" opacity="0.5"/><rect x="60" y="60" width="44" height="44" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 25</span>
+    <span class="name">Phase Shift</span>
+    <span class="desc">Overlappende dimensies. Transformatie van transparant naar solide.</span>
+  </div>
+</div>
+
+<!-- 26: Eclipse -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <circle cx="52" cy="64" r="28" fill="#FAFAFA"/>
+      <circle cx="76" cy="64" r="28" fill="#0A0A0A"/>
+      <circle cx="76" cy="64" r="28" fill="none" stroke="#FAFAFA" stroke-width="4"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><circle cx="52" cy="64" r="28" fill="#FAFAFA"/><circle cx="76" cy="64" r="28" fill="#0A0A0A"/><circle cx="76" cy="64" r="28" fill="none" stroke="#FAFAFA" stroke-width="6"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><circle cx="48" cy="64" r="32" fill="#FAFAFA"/><circle cx="80" cy="64" r="32" fill="#0A0A0A"/><circle cx="80" cy="64" r="32" fill="none" stroke="#FAFAFA" stroke-width="8"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 26</span>
+    <span class="name">Eclipse</span>
+    <span class="desc">Gedeeltelijke verhulling. Massa neemt af, vorm blijft intact.</span>
+  </div>
+</div>
+
+<!-- 27: Triad -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <polygon points="64,28 92,84 36,84" fill="none" stroke="#FAFAFA" stroke-width="6"/>
+      <polygon points="64,48 78,76 50,76" fill="#84CC16"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><polygon points="64,28 92,84 36,84" fill="none" stroke="#FAFAFA" stroke-width="8"/><polygon points="64,48 78,76 50,76" fill="#84CC16"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><polygon points="64,20 100,88 28,88" fill="none" stroke="#FAFAFA" stroke-width="12"/><polygon points="64,48 84,80 44,80" fill="#84CC16"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 27</span>
+    <span class="name">Triad</span>
+    <span class="desc">Stabiele driehoek met een gecomprimeerde kern.</span>
+  </div>
+</div>
+
+<!-- 28: Split Block -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="28" y="28" width="32" height="72" fill="#FAFAFA"/>
+      <rect x="68" y="28" width="32" height="72" fill="none" stroke="#FAFAFA" stroke-width="6"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="28" y="28" width="32" height="72" fill="#FAFAFA"/><rect x="68" y="28" width="32" height="72" fill="none" stroke="#FAFAFA" stroke-width="8"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="24" width="36" height="80" fill="#FAFAFA"/><rect x="68" y="24" width="36" height="80" fill="none" stroke="#FAFAFA" stroke-width="10"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 28</span>
+    <span class="name">Split</span>
+    <span class="desc">Twee identieke volumes, één zwaar en één licht. Efficiëntie in opslag.</span>
+  </div>
+</div>
+
+<!-- 29: Crosshair -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g stroke="#FAFAFA" stroke-width="4" stroke-linecap="square">
+        <line x1="64" y1="20" x2="64" y2="44"/>
+        <line x1="64" y1="84" x2="64" y2="108"/>
+        <line x1="20" y1="64" x2="44" y2="64"/>
+        <line x1="84" y1="64" x2="108" y2="64"/>
+      </g>
+      <rect x="56" y="56" width="16" height="16" fill="#84CC16"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g stroke="#FAFAFA" stroke-width="6" stroke-linecap="square"><line x1="64" y1="20" x2="64" y2="44"/><line x1="64" y1="84" x2="64" y2="108"/><line x1="20" y1="64" x2="44" y2="64"/><line x1="84" y1="64" x2="108" y2="64"/></g><rect x="54" y="54" width="20" height="20" fill="#84CC16"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g stroke="#FAFAFA" stroke-width="10" stroke-linecap="square"><line x1="64" y1="16" x2="64" y2="40"/><line x1="64" y1="88" x2="64" y2="112"/><line x1="16" y1="64" x2="40" y2="64"/><line x1="88" y1="64" x2="112" y2="64"/></g><rect x="48" y="48" width="32" height="32" fill="#84CC16"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 29</span>
+    <span class="name">Crosshair</span>
+    <span class="desc">Laser-scherpe focus op de output.</span>
+  </div>
+</div>
+
+<!-- 30: Waveform Reduce -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g fill="#FAFAFA">
+        <rect x="24" y="56" width="8" height="16" rx="4"/>
+        <rect x="40" y="40" width="8" height="48" rx="4"/>
+        <rect x="56" y="24" width="8" height="80" rx="4"/>
+        <rect x="72" y="40" width="8" height="48" rx="4" opacity="0.6"/>
+        <rect x="88" y="56" width="8" height="16" rx="4" opacity="0.3"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="24" y="56" width="8" height="16" rx="4"/><rect x="40" y="40" width="8" height="48" rx="4"/><rect x="56" y="24" width="8" height="80" rx="4"/><rect x="72" y="40" width="8" height="48" rx="4" opacity="0.6"/><rect x="88" y="56" width="8" height="16" rx="4" opacity="0.3"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g fill="#FAFAFA"><rect x="28" y="48" width="16" height="32" rx="8"/><rect x="56" y="24" width="16" height="80" rx="8"/><rect x="84" y="48" width="16" height="32" rx="8" opacity="0.5"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 30</span>
+    <span class="name">Wave</span>
+    <span class="desc">Signaal dat wegebt. Data-reductie over tijd.</span>
+  </div>
+</div>
+
+<!-- 31: Horizon -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <path d="M16 64 H112" stroke="#262626" stroke-width="2"/>
+      <rect x="52" y="52" width="24" height="24" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M16 64 H112" stroke="#262626" stroke-width="4"/><rect x="52" y="52" width="24" height="24" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M0 64 H128" stroke="#262626" stroke-width="6"/><rect x="44" y="44" width="40" height="40" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 31</span>
+    <span class="name">Horizon</span>
+    <span class="desc">Minimale horizonlijn met massief middelpunt.</span>
+  </div>
+</div>
+
+<!-- 32: Squeeze -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <path d="M24 24 L56 64 L24 104" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-linecap="square"/>
+      <path d="M104 24 L72 64 L104 104" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-linecap="square"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M24 24 L56 64 L24 104" fill="none" stroke="#FAFAFA" stroke-width="8" stroke-linecap="square"/><path d="M104 24 L72 64 L104 104" fill="none" stroke="#FAFAFA" stroke-width="8" stroke-linecap="square"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M20 20 L56 64 L20 108" fill="none" stroke="#FAFAFA" stroke-width="12" stroke-linecap="square"/><path d="M108 20 L72 64 L108 108" fill="none" stroke="#FAFAFA" stroke-width="12" stroke-linecap="square"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 32</span>
+    <span class="name">Squeeze</span>
+    <span class="desc">Twee chevrons die naar binnen drukken.</span>
+  </div>
+</div>
+
+<!-- 33: Offset -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="24" y="24" width="64" height="64" fill="none" stroke="#FAFAFA" stroke-width="4" opacity="0.5"/>
+      <rect x="40" y="40" width="64" height="64" fill="none" stroke="#84CC16" stroke-width="4"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="24" width="64" height="64" fill="none" stroke="#FAFAFA" stroke-width="6" opacity="0.5"/><rect x="40" y="40" width="64" height="64" fill="none" stroke="#84CC16" stroke-width="6"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="20" y="20" width="60" height="60" fill="none" stroke="#FAFAFA" stroke-width="8" opacity="0.5"/><rect x="48" y="48" width="60" height="60" fill="none" stroke="#84CC16" stroke-width="8"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 33</span>
+    <span class="name">Offset</span>
+    <span class="desc">Licht verplaatste frames met lime accent.</span>
+  </div>
+</div>
+
+<!-- 34: Orbit -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <circle cx="64" cy="64" r="40" fill="none" stroke="#262626" stroke-width="2"/>
+      <circle cx="64" cy="64" r="16" fill="#FAFAFA"/>
+      <circle cx="104" cy="64" r="6" fill="#84CC16"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><circle cx="64" cy="64" r="40" fill="none" stroke="#262626" stroke-width="4"/><circle cx="64" cy="64" r="16" fill="#FAFAFA"/><circle cx="104" cy="64" r="8" fill="#84CC16"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><circle cx="64" cy="64" r="36" fill="none" stroke="#262626" stroke-width="6"/><circle cx="64" cy="64" r="20" fill="#FAFAFA"/><circle cx="100" cy="64" r="10" fill="#84CC16"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 34</span>
+    <span class="name">Orbit</span>
+    <span class="desc">Werkproces cirkelt rond de kern. Organisch.</span>
+  </div>
+</div>
+
+<!-- 35: Diamond -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <g transform="rotate(45 64 64)">
+        <rect x="32" y="32" width="64" height="64" fill="none" stroke="#FAFAFA" stroke-width="4"/>
+        <rect x="48" y="48" width="32" height="32" fill="#FAFAFA"/>
+      </g>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g transform="rotate(45 64 64)"><rect x="32" y="32" width="64" height="64" fill="none" stroke="#FAFAFA" stroke-width="6"/><rect x="48" y="48" width="32" height="32" fill="#FAFAFA"/></g></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><g transform="rotate(45 64 64)"><rect x="28" y="28" width="72" height="72" fill="none" stroke="#FAFAFA" stroke-width="8"/><rect x="44" y="44" width="40" height="40" fill="#FAFAFA"/></g></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 35</span>
+    <span class="name">Diamond</span>
+    <span class="desc">Ruitvorm die de traditionele box doorbreekt.</span>
+  </div>
+</div>
+
+<!-- 36: Weight -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="32" y="88" width="64" height="4" fill="#FAFAFA"/>
+      <rect x="44" y="36" width="40" height="40" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="32" y="88" width="64" height="6" fill="#FAFAFA"/><rect x="44" y="36" width="40" height="40" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="92" width="80" height="8" fill="#FAFAFA"/><rect x="40" y="28" width="48" height="48" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 36</span>
+    <span class="name">Gravity</span>
+    <span class="desc">Zwevend object boven dunne basislijn. Spanning.</span>
+  </div>
+</div>
+
+<!-- 37: Vector Output -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <path d="M24 64 L56 32 V96 Z" fill="#FAFAFA"/>
+      <rect x="64" y="48" width="40" height="32" fill="#525252"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M24 64 L56 32 V96 Z" fill="#FAFAFA"/><rect x="64" y="48" width="40" height="32" fill="#525252"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M20 64 L60 24 V104 Z" fill="#FAFAFA"/><rect x="68" y="44" width="40" height="40" fill="#525252"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 37</span>
+    <span class="name">Vector</span>
+    <span class="desc">Play-achtige pijl met data-blok. Actiegericht.</span>
+  </div>
+</div>
+
+<!-- 38: Bracket Data -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <path d="M48 32 L24 64 L48 96" fill="none" stroke="#FAFAFA" stroke-width="6" stroke-linecap="square"/>
+      <rect x="64" y="56" width="32" height="16" fill="#84CC16"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M48 32 L24 64 L48 96" fill="none" stroke="#FAFAFA" stroke-width="8" stroke-linecap="square"/><rect x="64" y="56" width="32" height="16" fill="#84CC16"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><path d="M48 24 L16 64 L48 104" fill="none" stroke="#FAFAFA" stroke-width="10" stroke-linecap="square"/><rect x="64" y="48" width="40" height="32" fill="#84CC16"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 38</span>
+    <span class="name">Bracket Data</span>
+    <span class="desc">Enkele syntax bracket met data stream.</span>
+  </div>
+</div>
+
+<!-- 39: Null Box -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="32" y="32" width="64" height="64" fill="none" stroke="#FAFAFA" stroke-width="4"/>
+      <path d="M32 32 L96 96" stroke="#FAFAFA" stroke-width="4"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="32" y="32" width="64" height="64" fill="none" stroke="#FAFAFA" stroke-width="6"/><path d="M32 32 L96 96" stroke="#FAFAFA" stroke-width="6"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="24" y="24" width="80" height="80" fill="none" stroke="#FAFAFA" stroke-width="10"/><path d="M24 24 L104 104" stroke="#FAFAFA" stroke-width="10"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 39</span>
+    <span class="name">Null Box</span>
+    <span class="desc">Doorstreepte box. Grenzen worden overschreden.</span>
+  </div>
+</div>
+
+<!-- 40: Absolute Zero -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <rect x="44" y="44" width="40" height="40" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="44" y="44" width="40" height="40" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><rect x="36" y="36" width="56" height="56" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 40</span>
+    <span class="name">Absolute Zero</span>
+    <span class="desc">Puur wit vierkant. Het nulpunt van design.</span>
+  </div>
+</div>
+<!-- 41: Eclipse Inverted -->
+<div class="card">
+  <div class="icon-row">
+    <svg class="icon-lg" viewBox="0 0 128 128">
+      <rect width="128" height="128" rx="24" fill="#0A0A0A"/>
+      <circle cx="52" cy="64" r="28" fill="none" stroke="#FAFAFA" stroke-width="4"/>
+      <circle cx="76" cy="64" r="28" fill="#FAFAFA"/>
+    </svg>
+    <svg class="icon-md" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><circle cx="52" cy="64" r="28" fill="none" stroke="#FAFAFA" stroke-width="6"/><circle cx="76" cy="64" r="28" fill="#FAFAFA"/></svg>
+    <svg class="icon-sm" viewBox="0 0 128 128"><rect width="128" height="128" rx="24" fill="#0A0A0A"/><circle cx="48" cy="64" r="32" fill="none" stroke="#FAFAFA" stroke-width="8"/><circle cx="80" cy="64" r="32" fill="#FAFAFA"/></svg>
+  </div>
+  <div class="meta">
+    <span class="num">№ 41</span>
+    <span class="name">Eclipse Inverted</span>
+    <span class="desc">Achteraan open, vooraan massief. Het nieuwe bestand neemt de overhand.</span>
+  </div>
+</div>
+</div>
+</body>
+</html>
