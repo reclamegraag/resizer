@@ -175,10 +175,10 @@ export function PreviewOverlay() {
 
               {!compareReady && (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-bg/42 backdrop-blur-sm text-center px-6">
-                  <div className="rounded-full border border-border-soft bg-bg/88 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted">
+                  <div className="rounded-full border border-border-soft bg-white px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-black">
                     {loading ? 'Generating preview' : 'Preview state'}
                   </div>
-                  <p className="max-w-sm text-sm text-muted">
+                  <p className="max-w-sm text-sm text-black">
                     {loadError
                       ? 'The preview could not be rendered for this file.'
                       : 'Preparing a compare view with the original on the left and the compressed result on the right.'}
@@ -186,10 +186,10 @@ export function PreviewOverlay() {
                 </div>
               )}
 
-              <div className="absolute top-4 left-4 label bg-bg/84 border border-border-soft rounded px-2.5 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)] pointer-events-none">
+              <div className="absolute top-4 left-4 label bg-white border border-border-soft rounded px-2.5 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)] pointer-events-none !text-black">
                 original
               </div>
-              <div className="absolute top-4 right-4 label bg-bg/84 border border-border-soft rounded px-2.5 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)] pointer-events-none">
+              <div className="absolute top-4 right-4 label bg-white border border-border-soft rounded px-2.5 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.35)] pointer-events-none !text-black">
                 preview
               </div>
 
@@ -217,8 +217,8 @@ export function PreviewOverlay() {
 
               {pct > 0 && !loading && previewSize !== null && (
                 <div className="absolute bottom-5 left-1/2 -translate-x-1/2 pointer-events-none">
-                  <div className="px-4 py-2 rounded-full bg-bg/88 backdrop-blur-md border border-border-soft shadow-inner-hl shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
-                    <span className="font-display italic text-accent text-2xl tnum leading-none">
+                  <div className="px-4 py-2 rounded-full bg-white border border-border-soft shadow-inner-hl shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+                    <span className="font-display italic text-black text-2xl tnum leading-none">
                       −{pct}%
                     </span>
                   </div>

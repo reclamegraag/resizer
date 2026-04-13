@@ -35,12 +35,13 @@ fn inspect_one(path_str: String) -> Result<FileInfo, String> {
     let img = image::load_from_memory(&bytes).map_err(|e| e.to_string())?;
     let (w, h) = image::GenericImageView::dimensions(&img);
 
-    // Thumbnail as data URL (200px max)
-    let thumb = img.thumbnail(200, 200);
+    // Thumbnail as data URL (640px max, Lanczos3 for crispness)
+    let thumb = img.resize(640, 640, image::imageops::FilterType::Lanczos3);
     let mut thumb_bytes = Vec::new();
     {
         let mut cursor = std::io::Cursor::new(&mut thumb_bytes);
-        let _ = thumb.write_to(&mut cursor, image::ImageFormat::Jpeg);
+        let encoder = image::codecs::jpeg::JpegEncoder::new_with_quality(&mut cursor, 88);
+        let _ = thumb.write_with_encoder(encoder);
     }
     let data_url = if thumb_bytes.is_empty() {
         None

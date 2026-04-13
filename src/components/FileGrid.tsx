@@ -5,8 +5,9 @@ import { FileCard } from './FileCard';
 import { useContainerWidth, colsForWidth } from '../lib/useContainerCols';
 
 const GAP = 12;
-const ROW_HEIGHT = 348;
 const PADDING = 16;
+const THUMB_RATIO = 4 / 5;
+const CARD_CHROME = 156;
 
 export function FileGrid() {
   const jobs = useStore((s) => s.jobs);
@@ -20,6 +21,7 @@ export function FileGrid() {
   const innerW = Math.max(0, width - PADDING * 2);
   const colWidth = cols > 0 ? (innerW - GAP * (cols - 1)) / cols : 0;
   const rowCount = Math.ceil(jobs.length / cols);
+  const rowHeight = Math.round(colWidth * THUMB_RATIO + CARD_CHROME) + GAP;
 
   return (
     <div ref={wrapRef} className="flex-1 min-h-0 overflow-hidden px-4">
@@ -28,9 +30,9 @@ export function FileGrid() {
           columnCount={cols}
           rowCount={rowCount}
           columnWidth={colWidth + GAP}
-          rowHeight={ROW_HEIGHT}
+          rowHeight={rowHeight}
           width={width - PADDING * 2 + GAP}
-          height={rowCount * ROW_HEIGHT}
+          height={rowCount * rowHeight}
           style={{ overflow: 'visible' }}
         >
           {({ columnIndex, rowIndex, style }) => {
@@ -40,7 +42,7 @@ export function FileGrid() {
             const adjusted = {
               ...style,
               width: colWidth,
-              height: ROW_HEIGHT - GAP,
+              height: rowHeight - GAP,
             };
             return (
               <div style={adjusted}>
